@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:layout_height="wrap_content"
+    android:background="@mipmap/ic_nav_head">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        android:id="@+id/profile_image"
+        android:layout_width="@dimen/_64"
+        android:layout_height="@dimen/_64"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/_16"
+        android:layout_marginTop="@dimen/_40"
+        android:src="@mipmap/notification_icon" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Android Studio"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:id="@+id/textView"
+        android:id="@+id/navViewUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="android.studio@android.com" />
+        android:layout_alignStart="@+id/profile_image"
+        android:layout_below="@+id/profile_image"
+        android:layout_marginTop="@dimen/_16"
+        android:gravity="start"
+        android:textStyle="bold"
+        android:textColor="@color/colorInvert"
+        android:textSize="@dimen/textSizeBody2"
+        android:text="Pranav Gupta" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/navViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/navViewUserName"
+        android:layout_below="@+id/navViewUserName"
+        android:layout_marginTop="@dimen/_4"
+        android:gravity="start"
+        android:fontFamily="@string/fontStyleBody1"
+        android:textColor="@color/colorInvert"
+        android:textSize="@dimen/textSizeBody1"
+        android:text="bean.pranav@gmail.com" />
+
+</RelativeLayout>

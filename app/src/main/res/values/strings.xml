@@ -6,4 +6,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="action_sign_in">Sign in with Google</string>
+    <string name="user_id_field">User Id field</string>
+    <string name="user_display_name_field">User Display Name</string>
+    <string name="user_email">User Email</string>
+    <string name="fontStyleBody1">sans-serif</string>
 </resources>

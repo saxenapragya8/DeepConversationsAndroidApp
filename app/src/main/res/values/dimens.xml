@@ -2,7 +2,36 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="_0">0dp</dimen>
+    <dimen name="_1">1dp</dimen>
+    <dimen name="_2">2dp</dimen>
+    <dimen name="_4">4dp</dimen>
+    <dimen name="_6">6dp</dimen>
+    <dimen name="_8">8dp</dimen>
+    <dimen name="_12">12dp</dimen>
+    <dimen name="_16">16dp</dimen>
+    <dimen name="_24">24dp</dimen>
+    <dimen name="_32">32dp</dimen>
+    <dimen name="_40">40dp</dimen>
+    <dimen name="_48">48dp</dimen>
+    <dimen name="_56">56dp</dimen>
+    <dimen name="_60">60dp</dimen>
+    <dimen name="_64">64dp</dimen>
+    <dimen name="_neg_80">-80dp</dimen>
+
+    <!-- Font Sizes-->
+    <dimen name="textSizeHeadline">24sp</dimen>
+    <dimen name="textSizeTitle">20sp</dimen>
+    <dimen name="textSizeSubheading">16sp</dimen>
+    <dimen name="textSizeBody1">14sp</dimen>
+    <dimen name="textSizeBody2">14sp</dimen>
+    <dimen name="textSizeBody3">14sp</dimen>
+    <dimen name="textSizeCaption">12sp</dimen>
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+
 </resources>

@@ -12,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import deepconversations.fste.com.deepconversations.preferences.PreferenceManager;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +43,12 @@ public class NavigationActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View hView =  navigationView.getHeaderView(0);
+        TextView userName = (TextView)hView.findViewById(R.id.navViewUserName);
+        TextView email = (TextView)hView.findViewById(R.id.navViewEmail);
+        userName.setText(PreferenceManager.getInstance(this).getUserDisplayName());
+        email.setText(PreferenceManager.getInstance(this).getUserEmail());
     }
 
     @Override
