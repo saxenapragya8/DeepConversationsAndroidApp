@@ -95,16 +95,15 @@ public class RealtimeDbWriter {
 //        commentNode.push().setValue(commentData);
 //    }
 //
-//    public void addFriend(String friendUserId, String friendUserName){
-//        DatabaseReference userFriendList = database.child(RealtimeDbConstants.USER_NODE).child(getUserId()).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
-////        String key = userFriendList.push().getKey();
-//        userFriendList.child(friendUserId).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.INVITED);
-//        userFriendList.child(friendUserId).child(RealtimeDbConstants.FRIEND_NAME).setValue(friendUserName);
-//    }
-//
-//    public void addUserToFriendNode(String friendUserId){
-//        DatabaseReference friendsFriendList = database.child(RealtimeDbConstants.USER_NODE).child(friendUserId).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
-//        friendsFriendList.child(getUserId()).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.ACCEPT_INVITE);
-//        friendsFriendList.child(getUserId()).child(RealtimeDbConstants.FRIEND_NAME).setValue(getUserDisplayName());
-//    }
+    public void addFriend(String friendUserId, String friendUserName){
+        DatabaseReference userFriendList = database.child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
+        userFriendList.child(friendUserId).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.INVITED);
+        userFriendList.child(friendUserId).child(RealtimeDbConstants.FRIEND_NAME).setValue(friendUserName);
+    }
+
+    public void addUserToFriendNode(String friendUserId){
+        DatabaseReference friendsFriendList = database.child(RealtimeDbConstants.USER_NODE).child(friendUserId).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
+        friendsFriendList.child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.ACCEPT_INVITE);
+        friendsFriendList.child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.FRIEND_NAME).setValue(PreferenceManager.getInstance(ctx).getUserDisplayName());
+    }
 }
