@@ -4,16 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context="deepconversations.fste.com.deepconversations.LoginActivity">
 
     <ImageView
-        android:id="@+id/splashscreen"
-        android:layout_width="0dp"
-        android:layout_height="495dp"
+        android:id="@+id/splashscreen_quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@mipmap/splash_screen"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:src="@mipmap/splash_quote"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.502" />
+
+    <ImageView
+        android:id="@+id/splashscreen_fste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:src="@mipmap/splash_fste"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splashscreen_quote"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintVertical_bias="0.39999998" />
 
 
     <com.google.android.gms.common.SignInButton
@@ -22,9 +48,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="16dp"
         android:text="@string/action_sign_in"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splashscreen_fste" />
 
 </android.support.constraint.ConstraintLayout>

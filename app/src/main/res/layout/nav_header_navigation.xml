@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@mipmap/ic_nav_head">
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_nav_head"
+        app:layout_constraintDimensionRatio="w,16:9"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="0dp" />
 
     <ImageView
         android:id="@+id/profile_image"
-        android:layout_width="@dimen/_64"
-        android:layout_height="@dimen/_64"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="@dimen/_16"
-        android:layout_marginTop="@dimen/_40"
-        android:src="@mipmap/notification_icon" />
+        android:src="@mipmap/ic_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/navViewUserName"
@@ -20,12 +37,15 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/profile_image"
         android:layout_below="@+id/profile_image"
-        android:layout_marginTop="@dimen/_16"
         android:gravity="start"
-        android:textStyle="bold"
+        android:text="Pranav Gupta"
         android:textColor="@color/colorInvert"
         android:textSize="@dimen/textSizeBody2"
-        android:text="Pranav Gupta" />
+        android:textStyle="bold"
+        android:layout_marginStart="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/profile_image"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/navViewEmail" />
 
     <TextView
         android:id="@+id/navViewEmail"
@@ -33,11 +53,14 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/navViewUserName"
         android:layout_below="@+id/navViewUserName"
-        android:layout_marginTop="@dimen/_4"
-        android:gravity="start"
         android:fontFamily="@string/fontStyleBody1"
+        android:gravity="start"
+        android:text="bean.pranav@gmail.com"
         android:textColor="@color/colorInvert"
         android:textSize="@dimen/textSizeBody1"
-        android:text="bean.pranav@gmail.com" />
+        android:layout_marginStart="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/profile_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="12dp" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
