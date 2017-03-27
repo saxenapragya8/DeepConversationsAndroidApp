@@ -6,6 +6,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <dimen name="_88">88dp</dimen>
     <dimen name="_0">0dp</dimen>
     <dimen name="_1">1dp</dimen>
     <dimen name="_2">2dp</dimen>
@@ -13,6 +14,7 @@
     <dimen name="_6">6dp</dimen>
     <dimen name="_8">8dp</dimen>
     <dimen name="_12">12dp</dimen>
+    <dimen name="_13">13dp</dimen>
     <dimen name="_16">16dp</dimen>
     <dimen name="_20">20dp</dimen>
     <dimen name="_24">24dp</dimen>
@@ -22,6 +24,7 @@
     <dimen name="_56">56dp</dimen>
     <dimen name="_60">60dp</dimen>
     <dimen name="_64">64dp</dimen>
+    <dimen name="_72">72dp</dimen>
 
     <!-- Font Sizes-->
     <dimen name="textSizeHeadline">24sp</dimen>

@@ -1,9 +1,14 @@
 <resources>
+    <!-- Titles -->
     <string name="app_name">Deep Conversations</string>
     <string name="title_activity_navigation">Conversations</string>
+    <string name="title_activity_archives">Archives</string>
 
     <!-- Static Texts -->
     <string name="hint_comment">What are your thoughts?</string>
+    <string name="friendship_status_request_received">want to converse with you</string>
+    <string name="friendship_status_request_sent">request sent, awaiting reply</string>
+    <string name="friendship_status_request_denied">declined your request</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -31,7 +36,14 @@
     <string name="fontStyleBody2">sans-serif-medium</string>
     <string name="fontStyleBody3">sans-serif</string>
 
-    <!-- Invitation related fields -->
-    <string name="invitation_title">Recommendation to try a new app</string>
-    <string name="invitation_message">Your friend recommended you to use DeepConversations. Please download the app</string>
+    <string name="large_text">
+        "Material is the metaphor."
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics."
+    </string>
 </resources>

@@ -6,52 +6,56 @@
     android:layout_height="@dimen/_88"
     android:background="@color/colorWhite">
 
-    <ImageView
-        android:id="@+id/conversationStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_circle_read"
+    <ImageButton
+        android:id="@+id/imageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="@dimen/_16"
         android:layout_marginTop="@dimen/_16"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
-    <!-- TODO: image for no unread items (friends) is: ic_circle_unread -->
-    <!-- TODO: image for no unread items (groups) is: ic_circle_logo -->
-
-    <TextView
-        android:id="@+id/unreadCount"
-        android:layout_width="@dimen/_40"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16"
-        android:layout_marginTop="@dimen/_8"
-        android:text="3"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/textSizeTitle"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/conversationStatus" />
-    <!-- TODO: color for no unread items (friends) is: colorInactive -->
-    <!-- TODO: content for no unread items is: first initial of friend -->
-    <!-- TODO: no content for Groups -->
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_circle_read" />
+    <!-- TODO: Button disabled for pending requests -->
+
+    <ImageView
+        android:id="@+id/friendshipStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8"
+        app:srcCompat="@mipmap/ic_done"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        android:layout_marginStart="@dimen/_24"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <!-- TODO: pending requests icon: ic_more_horiz -->
+
+    <ImageButton
+        android:layout_width="@dimen/_32"
+        android:layout_height="@dimen/_24"
+        android:layout_marginBottom="@dimen/_13"
+        android:layout_marginRight="@dimen/_16"
+        android:background="@color/colorWhite"
+        android:tint="@color/colorInactive"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@mipmap/ic_delete" />
 
 
     <TextView
-        android:id="@+id/participantNames"
+        android:id="@+id/friendName"
         android:layout_width="257dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_72"
         android:layout_marginTop="@dimen/_13"
         android:lines="1"
-        android:text="Pragya Saxena"
+        android:text="Varun Deshpande"
         android:textAlignment="viewStart"
         android:textAppearance="@android:style/TextAppearance.Material.Subhead"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!-- TODO only first name in comma separated list for Groups -->
+    <!-- TODO only first name in comma separated list -->
 
     <TextView
-        android:id="@+id/firstUnreadDate"
+        android:id="@+id/friendshipRequestDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_16"
@@ -61,44 +65,42 @@
         android:textAlignment="viewEnd"
         android:textAppearance="@android:style/TextAppearance.Material.Caption"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/participantNames" />
+        app:layout_constraintTop_toTopOf="@+id/friendName" />
     <!-- TODO change date format: see github web code -->
 
     <TextView
-        android:id="@+id/currentTopic"
-        android:layout_width="323dp"
+        android:id="@+id/statusMessage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:layout_marginTop="0dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="Current Conversation Topic"
+        android:text="@string/friendship_status_request_received"
         android:textAlignment="viewStart"
         android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/firstUnreadCommentContent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/friendEmail"
         app:layout_constraintLeft_toLeftOf="@+id/guideline3"
-        app:layout_constraintRight_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/participantNames"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/friendName"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginStart="0dp" />
 
     <TextView
-        android:id="@+id/firstUnreadCommentContent"
-        android:layout_width="0dp"
+        android:id="@+id/friendEmail"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/currentTopic"
+        android:layout_below="@+id/statusMessage"
         android:layout_marginBottom="@dimen/_13"
+        android:layout_marginEnd="@dimen/_40"
         android:ellipsize="end"
         android:lines="1"
-        android:text="@string/large_text"
+        android:text="varunsd@gmail.com"
         android:textAlignment="viewStart"
         android:textAppearance="@android:style/TextAppearance.Material.Body1"
         android:textColor="@color/colorBody3"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline3"
-        app:layout_constraintRight_toLeftOf="@+id/guideline2" />
+        app:layout_constraintLeft_toLeftOf="@+id/guideline3" />
     <!-- TODO remove line break tags from content -->
 
     <android.support.constraint.Guideline
