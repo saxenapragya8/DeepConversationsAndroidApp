@@ -1,5 +1,4 @@
 <resources>
-    <!-- Titles -->
     <string name="app_name">Deep Conversations</string>
     <string name="title_activity_navigation">Conversations</string>
 
@@ -31,4 +30,8 @@
     <string name="fontStyleBody1">sans-serif</string>
     <string name="fontStyleBody2">sans-serif-medium</string>
     <string name="fontStyleBody3">sans-serif</string>
+
+    <!-- Invitation related fields -->
+    <string name="invitation_title">Recommendation to try a new app</string>
+    <string name="invitation_message">Your friend recommended you to use DeepConversations. Please download the app</string>
 </resources>

@@ -1,9 +1,14 @@
 package deepconversations.fste.com.deepconversations;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,27 +19,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.appinvite.AppInviteInvitation;
+
+import deepconversations.fste.com.deepconversations.firebase.AppConstants;
+import deepconversations.fste.com.deepconversations.firebase.RealtimeDbReader;
 import deepconversations.fste.com.deepconversations.preferences.PreferenceManager;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -44,7 +46,6 @@ public class NavigationActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-//        navigationView.getMenu().getItem(0).getSubMenu().getItem(0).setChecked(true);
 
         View hView =  navigationView.getHeaderView(0);
         TextView userName = (TextView)hView.findViewById(R.id.navViewUserName);
@@ -63,39 +64,22 @@ public class NavigationActivity extends AppCompatActivity
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.navigation, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//        if (id == R.id.navAddFriend) {
-//
-//        }
-//        } else if (id == R.id.nav_gallery) {
-//
+        if (id == R.id.navAddFriend) {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
+            startActivityForResult(intent, AppConstants.REQUEST_CODE_CONTACTS);
+        } else if (id == R.id.navInvite) {
+            Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
+                    .setMessage(getString(R.string.invitation_message))
+//                    .setEmailSubject(getString(R.string.invitation_message))
+                    .build();
+            startActivityForResult(intent, AppConstants.REQUEST_CODE_FIREBASE_INVITES);
+        }
 //        } else if (id == R.id.nav_slideshow) {
 //
 //        } else if (id == R.id.nav_manage) {
@@ -106,8 +90,37 @@ public class NavigationActivity extends AppCompatActivity
 //
 //        }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == AppConstants.REQUEST_CODE_CONTACTS && resultCode == RESULT_OK) {
+            // Get the URI and query the content provider for the phone number
+            Uri contactUri = data.getData();
+            String[] projection = new String[]{ContactsContract.CommonDataKinds.Email.ADDRESS};
+            Cursor cursor = getContentResolver().query(contactUri, projection,
+                    null, null, null);
+            // If the cursor returned is valid, get the phone number
+            if (cursor != null && cursor.moveToFirst()) {
+                int emailIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS);
+                String email = cursor.getString(emailIndex);
+                // Do something with the phone number
+                RealtimeDbReader.getInstance(this).getEmailUserId(email);
+            }
+        }
+        if (requestCode == AppConstants.REQUEST_CODE_FIREBASE_INVITES) {
+            if (resultCode == RESULT_OK) {
+                String[] ids = AppInviteInvitation.getInvitationIds(resultCode, data);
+                Toast.makeText(this, "Successfully sent invitations " + ids.toString(), Toast.LENGTH_LONG).show();
+                for (String id : ids) {
+                    Log.d("SentInvite", "onActivityResult: sent invitation " + id);
+                }
+            } else {
+                Toast.makeText(this, "Did not send invitations ", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

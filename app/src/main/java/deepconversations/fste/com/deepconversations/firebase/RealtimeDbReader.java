@@ -5,7 +5,7 @@ import android.content.Context;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import deepconversations.fste.com.deepconversations.listeners.AddNewFriendExistsListener;
+import deepconversations.fste.com.deepconversations.listeners.AddFriendExistsListener;
 
 /**
  * Created by Pragya on 3/1/2017.
@@ -28,6 +28,6 @@ public class RealtimeDbReader {
 
     public void getEmailUserId(String email){
         database.child(RealtimeDbConstants.USER_NODE).orderByChild(RealtimeDbConstants.EMAIL).equalTo(email)
-                .addListenerForSingleValueEvent(new AddNewFriendExistsListener(ctx));
+                .addListenerForSingleValueEvent(new AddFriendExistsListener(ctx, email));
     }
 }
