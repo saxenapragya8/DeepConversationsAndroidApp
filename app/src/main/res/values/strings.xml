@@ -1,7 +1,7 @@
 <resources>
     <!-- Titles -->
     <string name="app_name">Deep Conversations</string>
-    <string name="title_activity_navigation">Conversations</string>
+    <string name="title_activity_navigation">Deep Conversations</string>
     <string name="title_activity_archives">Archives</string>
 
     <!-- Static Texts -->
@@ -46,4 +46,6 @@
         "flexibility of the material creates new affordances that supercede those in the physical "
         "world, without breaking the rules of physics."
     </string>
+    <string name="invitation_title">invitation title here</string>
+    <string name="invitation_message">message here</string>
 </resources>

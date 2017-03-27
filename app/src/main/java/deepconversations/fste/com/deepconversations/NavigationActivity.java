@@ -67,28 +67,28 @@ public class NavigationActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        if (id == R.id.navAddFriend) {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
-            startActivityForResult(intent, AppConstants.REQUEST_CODE_CONTACTS);
-        } else if (id == R.id.navInvite) {
-            Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
+        switch (item.getItemId()) {
+            case R.id.navAddFriend:
+                Intent friendIntent = new Intent(Intent.ACTION_PICK);
+                friendIntent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
+                startActivityForResult(friendIntent, AppConstants.REQUEST_CODE_CONTACTS);
+                break;
+            case R.id.navInvite:
+                Intent inviteIntent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
                     .setMessage(getString(R.string.invitation_message))
-//                    .setEmailSubject(getString(R.string.invitation_message))
+//                  .setEmailSubject(getString(R.string.invitation_message))
                     .build();
-            startActivityForResult(intent, AppConstants.REQUEST_CODE_FIREBASE_INVITES);
+                startActivityForResult(inviteIntent, AppConstants.REQUEST_CODE_FIREBASE_INVITES);
+                break;
+            case R.id.navCreateGroup:
+            case R.id.navArchives:
+                Intent showArchivesActivity = new Intent(this, ArchivesActivity.class);
+                startActivity(showArchivesActivity);
+                break;
+            case R.id.navSettings:
+            case R.id.navHelp:
         }
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
