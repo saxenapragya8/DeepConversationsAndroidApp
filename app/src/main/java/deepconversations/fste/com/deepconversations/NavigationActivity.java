@@ -87,6 +87,9 @@ public class NavigationActivity extends AppCompatActivity
                 startActivity(showArchivesActivity);
                 break;
             case R.id.navSettings:
+                Intent showSettingsActivity = new Intent(this, SettingsActivity.class);
+                startActivity(showSettingsActivity);
+                break;
             case R.id.navHelp:
         }
 

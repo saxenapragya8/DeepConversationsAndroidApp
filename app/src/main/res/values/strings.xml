@@ -48,4 +48,6 @@
     </string>
     <string name="invitation_title">invitation title here</string>
     <string name="invitation_message">message here</string>
+    <string name="title_activity_comments">Group Name</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>
