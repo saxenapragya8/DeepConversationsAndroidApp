@@ -2,7 +2,9 @@
     <!-- Titles -->
     <string name="app_name">Deep Conversations</string>
     <string name="title_activity_navigation">Deep Conversations</string>
+    <string name="title_activity_comments">Group Name</string>
     <string name="title_activity_archives">Archives</string>
+    <string name="title_activity_settings">Settings</string>
 
     <!-- Static Texts -->
     <string name="hint_comment">What are your thoughts?</string>
@@ -26,6 +28,8 @@
     <string name="user_id_field">User Id field</string>
     <string name="user_display_name_field">User Display Name</string>
     <string name="user_email">User Email</string>
+    <string name="invitation_title">invitation title here</string>
+    <string name="invitation_message">message here</string>
 
     <!-- Font Styles-->
     <string name="fontStyleHeadline">sans-serif</string>
@@ -46,8 +50,4 @@
         "flexibility of the material creates new affordances that supercede those in the physical "
         "world, without breaking the rules of physics."
     </string>
-    <string name="invitation_title">invitation title here</string>
-    <string name="invitation_message">message here</string>
-    <string name="title_activity_comments">Group Name</string>
-    <string name="title_activity_settings">SettingsActivity</string>
 </resources>

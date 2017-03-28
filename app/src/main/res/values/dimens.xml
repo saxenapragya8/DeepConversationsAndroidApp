@@ -6,7 +6,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
-    <dimen name="_88">88dp</dimen>
     <dimen name="_0">0dp</dimen>
     <dimen name="_1">1dp</dimen>
     <dimen name="_2">2dp</dimen>
@@ -25,6 +24,7 @@
     <dimen name="_60">60dp</dimen>
     <dimen name="_64">64dp</dimen>
     <dimen name="_72">72dp</dimen>
+    <dimen name="_88">88dp</dimen>
 
     <!-- Font Sizes-->
     <dimen name="textSizeHeadline">24sp</dimen>
