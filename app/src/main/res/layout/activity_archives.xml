@@ -20,6 +20,9 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!--IF list is empty show this image-->
+    <include layout="@layout/background_image" />
+    <!--ELSE show list-->
     <include layout="@layout/content_archives" />
 
 </android.support.design.widget.CoordinatorLayout>

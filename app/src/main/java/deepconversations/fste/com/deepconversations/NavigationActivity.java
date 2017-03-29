@@ -38,6 +38,15 @@ public class NavigationActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -74,6 +83,10 @@ public class NavigationActivity extends AppCompatActivity
                 friendIntent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
                 startActivityForResult(friendIntent, AppConstants.REQUEST_CODE_CONTACTS);
                 break;
+            case R.id.navCreateGroup:
+                Intent showGroupsActivity = new Intent(this, AddGroupActivity.class);
+                startActivity(showGroupsActivity);
+                break;
             case R.id.navInvite:
                 Intent inviteIntent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
                     .setMessage(getString(R.string.invitation_message))
@@ -81,7 +94,6 @@ public class NavigationActivity extends AppCompatActivity
                     .build();
                 startActivityForResult(inviteIntent, AppConstants.REQUEST_CODE_FIREBASE_INVITES);
                 break;
-            case R.id.navCreateGroup:
             case R.id.navArchives:
                 Intent showArchivesActivity = new Intent(this, ArchivesActivity.class);
                 startActivity(showArchivesActivity);

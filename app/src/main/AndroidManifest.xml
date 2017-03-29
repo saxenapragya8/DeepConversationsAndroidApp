@@ -50,6 +50,14 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:parentActivityName=".NavigationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="deepconversations.fste.com.deepconversations.NavigationActivity" />
+        </activity>
+        <activity
+            android:name=".AddGroupActivity"
+            android:label="@string/title_activity_add_group"
             android:parentActivityName=".NavigationActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

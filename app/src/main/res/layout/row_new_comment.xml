@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:layout_marginBottom="-8dp"
+    android:layout_marginStart="-4dp"
+    android:layout_marginEnd="-4dp"
+    android:background="@drawable/top_border"
+    android:elevation="4dp">
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_24"
+        android:layout_marginTop="@dimen/_16"
+        android:fontFamily="sans-serif-medium"
+        android:lines="1"
+        android:text="Pragya Saxena"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- TODO only first name -->
+
+    <ImageButton
+        android:id="@+id/sendButton"
+        android:layout_width="@dimen/_48"
+        android:layout_height="@dimen/_48"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        android:background="@null"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_send" />
+
+    <ImageButton
+        android:id="@+id/topicButton"
+        android:layout_width="@dimen/_48"
+        android:layout_height="@dimen/_48"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@null"
+        app:layout_constraintRight_toLeftOf="@+id/sendButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_topic" />
+
+    <EditText
+        android:id="@+id/commentContent"
+        style="@android:style/Widget.Material.Light.EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_0"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginStart="@dimen/_0"
+        android:layout_marginTop="0dp"
+        android:hint="@string/hint_comment"
+        android:inputType="textMultiLine"
+        android:lineSpacingExtra="6sp"
+        android:paddingBottom="@dimen/_24"
+        android:paddingEnd="@dimen/_24"
+        android:paddingStart="@dimen/_24"
+        android:textAlignment="viewStart"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        android:textColor="@color/colorBlack87"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+</android.support.constraint.ConstraintLayout>

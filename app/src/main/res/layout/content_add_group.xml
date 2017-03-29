@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="deepconversations.fste.com.deepconversations.CommentsActivity"
-    tools:showIn="@layout/activity_comments">
+    tools:context="deepconversations.fste.com.deepconversations.AddGroupActivity"
+    tools:showIn="@layout/activity_add_group">
 
     <android.support.v7.widget.RecyclerView
         android:id="@android:id/list"
