@@ -7,7 +7,7 @@
     android:background="@color/colorWhite">
 
     <ImageView
-        android:id="@+id/conversationStatus"
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_circle_read"
@@ -30,7 +30,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/textSizeTitle"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/conversationStatus" />
+        app:layout_constraintTop_toTopOf="@+id/imageView1" />
     <!-- TODO: color for no unread items (friends) is: colorInactive -->
     <!-- TODO: content for no unread items is: first initial of friend -->
     <!-- TODO: no content for Groups -->
@@ -55,13 +55,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_16"
-        android:layout_marginTop="@dimen/_1"
         android:lines="1"
         android:text="Feb 12"
         android:textAlignment="viewEnd"
         android:textAppearance="@android:style/TextAppearance.Material.Caption"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/participantNames" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/participantNames"/>
     <!-- TODO change date format: see github web code -->
 
     <TextView
