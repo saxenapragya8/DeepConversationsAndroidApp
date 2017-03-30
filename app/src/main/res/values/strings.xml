@@ -8,7 +8,7 @@
 
     <!-- Static Texts -->
     <string name="hint_comment">What are your thoughts?</string>
-    <string name="friendship_status_request_received">wants to converse with you</string>
+    <string name="friendship_status_request_received">want to converse with you</string>
     <string name="friendship_status_request_sent">request sent, awaiting reply</string>
     <string name="friendship_status_request_denied">declined your request</string>
 
@@ -50,7 +50,6 @@
         "flexibility of the material creates new affordances that supercede those in the physical "
         "world, without breaking the rules of physics."
     </string>
-
 
     <!-- Strings related to Settings -->
 

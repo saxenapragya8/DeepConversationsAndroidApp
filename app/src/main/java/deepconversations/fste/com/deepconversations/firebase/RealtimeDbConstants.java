@@ -20,7 +20,9 @@ public class RealtimeDbConstants {
     public static final String CREATED_BY = "CreatedByDisplayName";
     public static final String CREATED_BY_ID = "CreatedByID";
     public static final String FRIEND_STATUS = "Status";
-    public static final String INVITED = "Awaiting Accept";
-    public static final String ACCEPT_INVITE = "Accept";
+    public static final String INVITED = "Awaiting Response";
+    public static final String ACCEPT_INVITE = "Accept/Decline";
+    public static final String ACTIVE = "Active";
     public static final String FRIEND_NAME = "Name";
+    public static final String INVITES = "NewInvites";
 }

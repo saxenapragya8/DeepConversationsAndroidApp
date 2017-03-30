@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.widget.Toast;
 
 import com.google.android.gms.appinvite.AppInviteInvitation;
@@ -12,6 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.net.URLEncoder;
 import java.util.Iterator;
 
 import deepconversations.fste.com.deepconversations.R;
@@ -46,8 +48,8 @@ public class AddFriendExistsListener implements ValueEventListener {
 //                Toast.makeText(ctx, "The friend is already using the app " + RealtimeDbConstants.APP_ID, Toast.LENGTH_LONG).show();
                 String friendUserId = obj.getKey();
                 String friendUserName = (String)obj.child(RealtimeDbConstants.USER_NAME).getValue();
-                RealtimeDbWriter.getInstance(ctx).addUserToFriendNode(friendUserId);
-                RealtimeDbWriter.getInstance(ctx).addFriend(friendUserId, friendUserName);
+                RealtimeDbWriter.getInstance(ctx, false).addUserToFriendNode(friendUserId, RealtimeDbConstants.ACCEPT_INVITE);
+                RealtimeDbWriter.getInstance(ctx, false).addFriend(friendUserId, friendUserName, RealtimeDbConstants.INVITED);
             } else {
 //                String title = "The friend is on our platform but not using the app " + RealtimeDbConstants.APP_ID;
 //                Toast.makeText(ctx, title, Toast.LENGTH_LONG).show();
@@ -62,9 +64,12 @@ public class AddFriendExistsListener implements ValueEventListener {
     }
 
     public void showFirebaseInvitePage(){
+
         Intent intent = new AppInviteInvitation.IntentBuilder(ctx.getString(R.string.invitation_title))
                         .setMessage(ctx.getString(R.string.invitation_message))
-                        .setEmailSubject(ctx.getString(R.string.invitation_message))
+                .setDeepLink(Uri.parse("https://zyhh4.app.goo.gl/?link=http://www.whatareyourthoughts.org/&apn=deepconversations.fste.com.deepconversations&afl=http://www.whatareyourthoughts.org/"))
+//                .setCustomImage(Uri.parse(ctx.getString(R.string.invitation_custom_image)))
+//                .setCallToActionText(ctx.getString(R.string.invitation_cta))
                         .build();
                 ((Activity)ctx).startActivityForResult(intent, AppConstants.REQUEST_CODE_FIREBASE_INVITES);
     }

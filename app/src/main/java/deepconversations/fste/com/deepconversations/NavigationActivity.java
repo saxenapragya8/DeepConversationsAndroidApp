@@ -1,11 +1,13 @@
 package deepconversations.fste.com.deepconversations;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -21,16 +23,25 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.appinvite.AppInvite;
 import com.google.android.gms.appinvite.AppInviteInvitation;
+import com.google.android.gms.appinvite.AppInviteInvitationResult;
+import com.google.android.gms.appinvite.AppInviteReferral;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 
 import deepconversations.fste.com.deepconversations.firebase.AppConstants;
 import deepconversations.fste.com.deepconversations.firebase.RealtimeDbReader;
+import deepconversations.fste.com.deepconversations.firebase.RealtimeDbWriter;
 import deepconversations.fste.com.deepconversations.preferences.PreferenceManager;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private int REQUEST_CODE = 1;
+    private GoogleApiClient mGoogleApiClientAppInviteOnly;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +49,8 @@ public class NavigationActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        RealtimeDbWriter.getInstance(this, true);
+        RealtimeDbReader.getInstance(this, true);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -61,6 +66,47 @@ public class NavigationActivity extends AppCompatActivity
         TextView email = (TextView)hView.findViewById(R.id.navViewEmail);
         userName.setText(PreferenceManager.getInstance(this).getUserDisplayName());
         email.setText(PreferenceManager.getInstance(this).getUserEmail());
+
+        getAppInvites();
+    }
+
+    public void getAppInvites(){
+        // Check for App Invite invitations and launch deep-link activity if possible.
+        // Requires that an Activity is registered in AndroidManifest.xml to handle
+        // deep-link URLs.
+        if(mGoogleApiClientAppInviteOnly == null) {
+            mGoogleApiClientAppInviteOnly = new GoogleApiClient.Builder(this)
+                    .addApi(AppInvite.API)
+                    .enableAutoManage((AppCompatActivity) this, new GoogleApiClient.OnConnectionFailedListener() {
+                        @Override
+                        public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                            Log.w("StartActivity", "onConnectionFailed:" + connectionResult);
+                        }
+                    })
+                    .build();
+        }
+        boolean autoLaunchDeepLink = false;
+        AppInvite.AppInviteApi.getInvitation(mGoogleApiClientAppInviteOnly, (Activity)this, autoLaunchDeepLink)
+                .setResultCallback(
+                        new ResultCallback<AppInviteInvitationResult>() {
+                            @Override
+                            public void onResult(AppInviteInvitationResult result) {
+                                Log.d("appInvites", "getInvitation:onResult:" + result.getStatus());
+                                Intent intent = result.getInvitationIntent();
+                                if (result.getStatus().isSuccess()) {
+                                    // Extract information from the intent
+//                                    Intent intent = result.getInvitationIntent();
+//                                    String deepLink = AppInviteReferral.getDeepLink(intent);
+                                    String invitationId = AppInviteReferral.getInvitationId(intent);
+                                    RealtimeDbReader.getInstance(NavigationActivity.this, false).getInviteIdInviteSentByUser(invitationId);
+                                    // Because autoLaunchDeepLink = true we don't have to do anything
+                                    // here, but we could set that to false and manually choose
+                                    // an Activity to launch to handle the deep link here.
+                                    // ...
+//                                    ctx.startActivity(intent);
+                                }
+                            }
+                        });
     }
 
     @Override
@@ -74,6 +120,12 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        getAppInvites();
+    }
+
+    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
 
@@ -83,17 +135,14 @@ public class NavigationActivity extends AppCompatActivity
                 friendIntent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
                 startActivityForResult(friendIntent, AppConstants.REQUEST_CODE_CONTACTS);
                 break;
-            case R.id.navCreateGroup:
-                Intent showGroupsActivity = new Intent(this, AddGroupActivity.class);
-                startActivity(showGroupsActivity);
-                break;
             case R.id.navInvite:
                 Intent inviteIntent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
                     .setMessage(getString(R.string.invitation_message))
-//                  .setEmailSubject(getString(R.string.invitation_message))
+                        .setDeepLink(Uri.parse("https://zyhh4.app.goo.gl/?link=http://www.whatareyourthoughts.org/&apn=deepconversations.fste.com.deepconversations&afl=http://www.whatareyourthoughts.org/"))
                     .build();
                 startActivityForResult(inviteIntent, AppConstants.REQUEST_CODE_FIREBASE_INVITES);
                 break;
+            case R.id.navCreateGroup:
             case R.id.navArchives:
                 Intent showArchivesActivity = new Intent(this, ArchivesActivity.class);
                 startActivity(showArchivesActivity);
@@ -123,16 +172,15 @@ public class NavigationActivity extends AppCompatActivity
                 int emailIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS);
                 String email = cursor.getString(emailIndex);
                 // Do something with the phone number
-                RealtimeDbReader.getInstance(this).getEmailUserId(email);
+                RealtimeDbReader.getInstance(this, true).getEmailUserId(email);
             }
+            cursor.close();
         }
         if (requestCode == AppConstants.REQUEST_CODE_FIREBASE_INVITES) {
             if (resultCode == RESULT_OK) {
                 String[] ids = AppInviteInvitation.getInvitationIds(resultCode, data);
                 Toast.makeText(this, "Successfully sent invitations " + ids.toString(), Toast.LENGTH_LONG).show();
-                for (String id : ids) {
-                    Log.d("SentInvite", "onActivityResult: sent invitation " + id);
-                }
+                RealtimeDbWriter.getInstance(this, true).addNewInviteIds(ids);
             } else {
                 Toast.makeText(this, "Did not send invitations ", Toast.LENGTH_LONG).show();
             }

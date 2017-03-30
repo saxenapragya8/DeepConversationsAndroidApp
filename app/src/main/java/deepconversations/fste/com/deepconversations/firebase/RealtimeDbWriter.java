@@ -26,9 +26,9 @@ public class RealtimeDbWriter {
 
     private RealtimeDbWriter(Context context){ this.ctx = context;}
 
-    public static synchronized RealtimeDbWriter getInstance(Context context)
+    public static synchronized RealtimeDbWriter getInstance(Context context, Boolean forceNewObjCreation)
     {
-        if (null == instance)
+        if (null == instance || forceNewObjCreation)
             instance = new RealtimeDbWriter(context);
         return instance;
     }
@@ -95,15 +95,22 @@ public class RealtimeDbWriter {
 //        commentNode.push().setValue(commentData);
 //    }
 //
-    public void addFriend(String friendUserId, String friendUserName){
+    public void addFriend(String friendUserId, String friendUserName, String status){
         DatabaseReference userFriendList = database.child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
-        userFriendList.child(friendUserId).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.INVITED);
+        userFriendList.child(friendUserId).child(RealtimeDbConstants.FRIEND_STATUS).setValue(status);
         userFriendList.child(friendUserId).child(RealtimeDbConstants.FRIEND_NAME).setValue(friendUserName);
     }
 
-    public void addUserToFriendNode(String friendUserId){
+    public void addUserToFriendNode(String friendUserId, String status){
         DatabaseReference friendsFriendList = database.child(RealtimeDbConstants.USER_NODE).child(friendUserId).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
-        friendsFriendList.child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.ACCEPT_INVITE);
+        friendsFriendList.child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.FRIEND_STATUS).setValue(status);
         friendsFriendList.child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.FRIEND_NAME).setValue(PreferenceManager.getInstance(ctx).getUserDisplayName());
+    }
+
+    public void addNewInviteIds(String[] ids){
+        DatabaseReference newInvitesList = database.child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.INVITES);
+        for(String id: ids) {
+            newInvitesList.child(id).child(PreferenceManager.getInstance(ctx).getUserId()).setValue(PreferenceManager.getInstance(ctx).getUserDisplayName());
+        }
     }
 }

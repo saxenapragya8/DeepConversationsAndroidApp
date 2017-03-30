@@ -24,7 +24,7 @@ public class AddFriendActivity extends AppCompatActivity {
 
     public void onSendInvite(View view){
         TextView emailInput = (TextView) findViewById(R.id.friendEmail);
-        RealtimeDbReader.getInstance(this).getEmailUserId(emailInput.getText().toString());
+        RealtimeDbReader.getInstance(this, false).getEmailUserId(emailInput.getText().toString());
     }
 
 

@@ -1,15 +1,19 @@
 package deepconversations.fste.com.deepconversations;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.appinvite.AppInvite;
+import com.google.android.gms.appinvite.AppInviteInvitationResult;
+import com.google.android.gms.appinvite.AppInviteReferral;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -29,6 +33,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import deepconversations.fste.com.deepconversations.firebase.RealtimeDbReader;
 import deepconversations.fste.com.deepconversations.firebase.RealtimeDbWriter;
 import deepconversations.fste.com.deepconversations.firebase.model.UserData;
 import deepconversations.fste.com.deepconversations.listeners.FireauthStateChangeListener;
@@ -46,16 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .requestScopes(new Scope(Scopes.EMAIL), new Scope(Scopes.PROFILE), new Scope(Scopes.PLUS_LOGIN), new Scope(Scopes.PLUS_ME))
-                .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, new GoogleSigninFailedListener(this) /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
+        mGoogleApiClient = GoogleApi.getInstance(this).getGoogleApiClient();
         mAuth = FirebaseAuth.getInstance();
         checkGooglePlayServicesAvailability();
         SignInButton mEmailSignInButton = (SignInButton) findViewById(R.id.email_sign_in_button);
@@ -90,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-                RealtimeDbWriter.getInstance(LoginActivity.this).writeUserDataToFirebase(new UserData(account.getId(), account.getEmail(), account.getDisplayName()));
+                RealtimeDbWriter.getInstance(LoginActivity.this, false).writeUserDataToFirebase(new UserData(account.getId(), account.getEmail(), account.getDisplayName()));
 
             } else {
 //                Toast.makeText(ctx, "Google Sign in failed", Toast.LENGTH_LONG).show();
@@ -115,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.w(this.getClass().toString(), "signInWithCredential", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         } else {
-                            RealtimeDbWriter.getInstance(LoginActivity.this).addDataChangeListeners();
+                            RealtimeDbWriter.getInstance(LoginActivity.this, false).addDataChangeListeners();
                             Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
                             LoginActivity.this.startActivity(intent);
                         }
