@@ -3,6 +3,7 @@
     <string name="app_name">Deep Conversations</string>
     <string name="title_activity_navigation">Deep Conversations</string>
     <string name="title_activity_comments">Group Name</string>
+    <string name="title_activity_add_group">New Group</string>
     <string name="title_activity_archives">Archives</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -111,5 +112,4 @@
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="title_activity_add_group">AddGroupActivity</string>
 </resources>

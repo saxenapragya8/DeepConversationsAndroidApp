@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
     <!-- TODO: image for no unread items (friends) is: ic_circle_unread -->
-    <!-- TODO: image for no unread items (groups) is: ic_circle_logo -->
+    <!-- TODO: image for no unread items (groups) is: ic_circle_group -->
 
     <TextView
         android:id="@+id/unreadCount"
