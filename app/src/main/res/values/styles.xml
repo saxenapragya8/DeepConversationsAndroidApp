@@ -13,8 +13,41 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.CloseActionBar" parent="AppTheme.NoActionBar">
+        <item name="android:homeAsUpIndicator">@drawable/ic_close</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- Font Styles-->
+    <style name="FSTE.Body1" parent="@android:style/TextAppearance.Material.Body1">
+        <item name="android:textSize">17sp</item>
+        <item name="android:lineSpacingMultiplier">1.45</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/colorBlack87</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="FSTE.Body1.Secondary">
+        <item name="android:textColor">@color/colorBlack38</item>
+    </style>
+
+    <style name="FSTE.Body2" parent="FSTE.Body1">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="FSTE.Body2.Primary">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="FSTE.Caption" parent="@android:style/TextAppearance.Material.Caption">
+        <item name="android:textSize">13sp</item>
+        <item name="android:lineSpacingMultiplier">1.45</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/colorBlack38</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
 </resources>

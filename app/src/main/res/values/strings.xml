@@ -42,14 +42,12 @@
     <string name="fontStyleBody3">sans-serif</string>
 
     <string name="large_text">
-        "Material is the metaphor."
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics."
+        This really great TED talk I came across, \'On Being Wrong\'.
+        The speaker asks a very beautiful question - How does it feel to be wrong?
+        Most people answered what I would have answered - dreadful, guilty, funny etc. But,
+        then her take on it was really insightful. Rather than taking away from the speaker,
+        how about you watch it and tell me what you think about how we as humans think about
+        being wrong? This would be a fun little topic.
     </string>
 
     <!-- Strings related to Settings -->

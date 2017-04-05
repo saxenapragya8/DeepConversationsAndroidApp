@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:left="@dimen/comment_row_margin" android:right="@dimen/comment_row_margin">
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@color/colorBlack12" />
+        </shape>
+    </item>
+
+    <item android:top="@dimen/divider_comment_height" android:left="@dimen/comment_row_margin" android:right="@dimen/comment_row_margin">
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@color/colorWhite" />
+        </shape>
+    </item>
+</layer-list>

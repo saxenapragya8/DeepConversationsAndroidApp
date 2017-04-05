@@ -15,7 +15,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorWhite"
+            app:titleTextColor="@color/colorBlack87"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <ImageButton
@@ -25,7 +26,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
                 android:background="@null"
-                android:tint="@color/colorWhite"
+                android:tint="@color/colorPrimary"
                 app:srcCompat="@drawable/ic_done" />
 
         </android.support.v7.widget.Toolbar>

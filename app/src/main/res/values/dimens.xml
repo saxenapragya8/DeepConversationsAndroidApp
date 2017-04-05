@@ -6,6 +6,11 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <dimen name="comment_row_margin">20dp</dimen>
+    <dimen name="comment_row_padding">10dp</dimen>
+    <dimen name="divider_comment_height">1dp</dimen>
+    <dimen name="divider_topic_height">5dp</dimen>
+
     <dimen name="_0">0dp</dimen>
     <dimen name="_1">1dp</dimen>
     <dimen name="_2">2dp</dimen>

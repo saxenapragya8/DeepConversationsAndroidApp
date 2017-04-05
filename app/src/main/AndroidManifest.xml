@@ -68,7 +68,7 @@
             android:name=".AddGroupActivity"
             android:label="@string/title_activity_add_group"
             android:parentActivityName=".NavigationActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.CloseActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="deepconversations.fste.com.deepconversations.NavigationActivity" />

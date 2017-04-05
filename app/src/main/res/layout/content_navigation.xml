@@ -9,19 +9,48 @@
     tools:context="deepconversations.fste.com.deepconversations.NavigationActivity"
     tools:showIn="@layout/app_bar_navigation">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@android:id/list"
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@android:id/list"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:divider="@color/colorDivider"-->
+        <!--android:dividerHeight="@dimen/_1"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--</android.support.v7.widget.RecyclerView>-->
+
+    <include
+        layout="@layout/row_topic"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="8dp"
-        android:divider="@color/colorDivider"
-        android:dividerHeight="@dimen/_1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/include" />
 
-    </android.support.v7.widget.RecyclerView>
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <include
+            layout="@layout/row_comment_expanded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="-28dp" />
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.constraint.ConstraintLayout>

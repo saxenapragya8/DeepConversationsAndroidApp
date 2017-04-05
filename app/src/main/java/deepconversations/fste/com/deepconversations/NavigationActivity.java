@@ -3,7 +3,9 @@ package deepconversations.fste.com.deepconversations;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -30,6 +32,8 @@ import com.google.android.gms.appinvite.AppInviteReferral;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
+
+import java.util.Locale;
 
 import deepconversations.fste.com.deepconversations.firebase.AppConstants;
 import deepconversations.fste.com.deepconversations.firebase.RealtimeDbReader;
@@ -68,6 +72,11 @@ public class NavigationActivity extends AppCompatActivity
         email.setText(PreferenceManager.getInstance(this).getUserEmail());
 
         getAppInvites();
+
+        TextView topic = (TextView) findViewById(R.id.topic);
+//        Typeface roboto_slab = Typeface.createFromAsset(getAssets(), "fonts/RobotoSlab-Light.ttf");
+//        topic.setTypeface(roboto_slab);
+
     }
 
     public void getAppInvites(){
@@ -143,6 +152,9 @@ public class NavigationActivity extends AppCompatActivity
                 startActivityForResult(inviteIntent, AppConstants.REQUEST_CODE_FIREBASE_INVITES);
                 break;
             case R.id.navCreateGroup:
+                Intent showAddGroupActivity = new Intent(this, AddGroupActivity.class);
+                startActivity(showAddGroupActivity);
+                break;
             case R.id.navArchives:
                 Intent showArchivesActivity = new Intent(this, ArchivesActivity.class);
                 startActivity(showArchivesActivity);
