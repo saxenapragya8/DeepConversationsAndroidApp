@@ -4,94 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/divider_topic">
+    android:background="@drawable/primary_divider">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/divider_topic_height" />
+        app:layout_constraintGuide_begin="@dimen/primary_divider_height" />
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_20"
-        android:layout_marginTop="@dimen/_20"
-        android:tint="@color/colorAccent"
+        android:id="@+id/topicAvatar"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:layout_marginStart="@dimen/primary_row_margin"
+        android:layout_marginTop="@dimen/primary_row_margin"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:srcCompat="@drawable/ic_circle" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:tint="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
-        app:layout_constraintLeft_toLeftOf="@+id/imageView1"
-        app:layout_constraintRight_toRightOf="@+id/imageView1"
-        app:layout_constraintTop_toTopOf="@+id/imageView1"
-        app:srcCompat="@drawable/ic_topic" />
+        app:srcCompat="@mipmap/ic_topic_avatar" />
 
     <TextView
         android:id="@+id/userName"
-        style="@style/FSTE.Body2"
+        style="@style/FSTE.Caption"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="0dp"
-        android:lines="1"
+        android:layout_marginStart="@dimen/secondary_row_margin"
+        android:layout_marginTop="@dimen/primary_avatar_text_padding"
         android:text="Pragya"
         android:textAlignment="viewStart"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView1" />
+        app:layout_constraintTop_toTopOf="@+id/topicAvatar" />
     <!-- TODO only first name in comma separated list for Groups -->
 
 
     <TextView
-        android:id="@+id/creationDate"
-        style="@style/FSTE.Caption"
+        android:id="@+id/topicDate"
+        style="@style/FSTE.Caption.Secondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="3dp"
-        android:ellipsize="end"
-        android:lines="1"
+        android:layout_marginStart="@dimen/secondary_row_margin"
+        android:layout_marginTop="@dimen/secondary_avatar_text_padding"
         android:text="Mar 25"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
     <!-- TODO change date format: see github web code -->
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/linkButton"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:layout_marginEnd="@dimen/primary_row_margin"
+        android:layout_marginTop="@dimen/primary_row_margin"
         android:background="@null"
-        android:tint="@color/colorBlack54"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
         app:srcCompat="@drawable/ic_open_link" />
-    <!--TODO: change tint for icon to colorBlack12 IF no link provided-->
+    <!--TODO: IF no link provided change icon to ic_open_link_inactive -->
 
     <TextView
         android:id="@+id/topic"
-        style="@style/FSTE.Body1"
-        android:layout_width="wrap_content"
+        style="@style/FSTE.Title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:text="Topic of conversations"
+        android:layout_marginBottom="@dimen/primary_row_margin"
+        android:layout_marginEnd="@dimen/primary_row_margin"
+        android:layout_marginStart="@dimen/primary_row_margin"
+        android:layout_marginTop="@dimen/primary_text_padding"
+        android:text="Topic of conversations can be as long as they want to be?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView1" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topicAvatar" />
 
 </android.support.constraint.ConstraintLayout>

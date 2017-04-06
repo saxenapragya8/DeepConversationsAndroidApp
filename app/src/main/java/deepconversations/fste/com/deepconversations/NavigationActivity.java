@@ -73,9 +73,9 @@ public class NavigationActivity extends AppCompatActivity
 
         getAppInvites();
 
-        TextView topic = (TextView) findViewById(R.id.topic);
-//        Typeface roboto_slab = Typeface.createFromAsset(getAssets(), "fonts/RobotoSlab-Light.ttf");
-//        topic.setTypeface(roboto_slab);
+        TextView tx = (TextView)findViewById(R.id.topic);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/roboto_slab_light.ttf");
+        tx.setTypeface(custom_font);
 
     }
 

@@ -21,8 +21,8 @@
 
             <ImageButton
                 android:id="@+id/markUnreadButton"
-                android:layout_width="@dimen/_48"
-                android:layout_height="@dimen/_48"
+                android:layout_width="@dimen/primary_button_size"
+                android:layout_height="@dimen/primary_button_size"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
                 android:background="@null"
@@ -31,8 +31,8 @@
 
             <ImageButton
                 android:id="@+id/archiveButton"
-                android:layout_width="@dimen/_48"
-                android:layout_height="@dimen/_48"
+                android:layout_width="@dimen/primary_button_size"
+                android:layout_height="@dimen/primary_button_size"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
                 android:background="@null"

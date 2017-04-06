@@ -3,7 +3,7 @@
     <string name="app_name">Deep Conversations</string>
     <string name="title_activity_navigation">Deep Conversations</string>
     <string name="title_activity_comments">Group Name</string>
-    <string name="title_activity_add_group">New Group</string>
+    <string name="title_activity_add_group">Create Group</string>
     <string name="title_activity_archives">Archives</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -31,15 +31,6 @@
     <string name="user_email">User Email</string>
     <string name="invitation_title">invitation title here</string>
     <string name="invitation_message">message here</string>
-
-    <!-- Font Styles-->
-    <string name="fontStyleHeadline">sans-serif</string>
-    <string name="fontStyleTitle">sans-serif-medium</string>
-    <string name="fontStyleSubheading">sans-serif-medium</string>
-    <string name="fontStyleCaption">sans-serif</string>
-    <string name="fontStyleBody1">sans-serif</string>
-    <string name="fontStyleBody2">sans-serif-medium</string>
-    <string name="fontStyleBody3">sans-serif</string>
 
     <string name="large_text">
         This really great TED talk I came across, \'On Being Wrong\'.

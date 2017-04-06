@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/profile_image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/user_profile_avatar_size"
+        android:layout_height="@dimen/user_profile_avatar_size"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
@@ -38,15 +38,15 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/profile_image"
         android:layout_below="@+id/profile_image"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="0dp"
         android:gravity="start"
         android:text="Pranav Gupta"
-        android:textColor="@color/colorInvert"
-        android:textSize="@dimen/textSizeBody2"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/user_profile_text_size"
         android:textStyle="bold"
-        android:layout_marginStart="0dp"
-        app:layout_constraintLeft_toLeftOf="@+id/profile_image"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/navViewEmail" />
+        app:layout_constraintBottom_toTopOf="@+id/navViewEmail"
+        app:layout_constraintLeft_toLeftOf="@+id/profile_image" />
 
     <TextView
         android:id="@+id/navViewEmail"
@@ -54,14 +54,13 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/navViewUserName"
         android:layout_below="@+id/navViewUserName"
-        android:fontFamily="@string/fontStyleBody1"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="0dp"
         android:gravity="start"
         android:text="bean.pranav@gmail.com"
-        android:textColor="@color/colorInvert"
-        android:textSize="@dimen/textSizeBody1"
-        android:layout_marginStart="0dp"
-        app:layout_constraintLeft_toLeftOf="@+id/profile_image"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/user_profile_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="12dp" />
+        app:layout_constraintLeft_toLeftOf="@+id/profile_image" />
 
 </android.support.constraint.ConstraintLayout>

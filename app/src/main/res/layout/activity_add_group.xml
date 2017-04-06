@@ -15,18 +15,17 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorWhite"
-            app:titleTextColor="@color/colorBlack87"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <ImageButton
                 android:id="@+id/createGroupButton"
-                android:layout_width="@dimen/_48"
-                android:layout_height="@dimen/_48"
+                android:layout_width="@dimen/primary_button_size"
+                android:layout_height="@dimen/primary_button_size"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
                 android:background="@null"
-                android:tint="@color/colorPrimary"
+                android:tint="@color/colorAccent"
                 app:srcCompat="@drawable/ic_done" />
 
         </android.support.v7.widget.Toolbar>

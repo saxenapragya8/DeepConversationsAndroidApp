@@ -3,119 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_88"
-    android:background="@color/colorWhite">
+    android:layout_height="wrap_content"
+    android:background="@drawable/primary_divider">
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_circle_read"
-        android:layout_marginStart="@dimen/_16"
-        android:layout_marginTop="@dimen/_16"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/primary_divider_height"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/conversationAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/primary_row_margin"
+        android:layout_marginTop="@dimen/primary_row_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:srcCompat="@mipmap/ic_circle_read" />
     <!-- TODO: image for no unread items (friends) is: ic_circle_unread -->
     <!-- TODO: image for no unread items (groups) is: ic_circle_group -->
 
     <TextView
-        android:id="@+id/unreadCount"
-        android:layout_width="@dimen/_40"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16"
-        android:layout_marginTop="@dimen/_8"
-        android:text="3"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/textSizeTitle"
+        android:id="@+id/unreadCommentsCount"
+        style="@style/FSTE.AvatarText"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="@dimen/primary_row_margin"
+        android:layout_marginTop="9dp"
+        android:text="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView1" />
-    <!-- TODO: color for no unread items (friends) is: colorInactive -->
-    <!-- TODO: content for no unread items is: first initial of friend -->
-    <!-- TODO: no content for Groups -->
-
+        app:layout_constraintTop_toTopOf="@+id/conversationAvatar" />
+    <!-- TODO: style for no unread items (friends) is: @style/FSTE.AvatarText.Secondary -->
+    <!-- TODO: text for no unread items is: first initial of friend -->
+    <!-- TODO: textView is hidden for Groups -->
 
     <TextView
-        android:id="@+id/participantNames"
-        android:layout_width="257dp"
+        android:id="@+id/groupName"
+        style="@style/FSTE.Caption"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_72"
-        android:layout_marginTop="@dimen/_13"
-        android:lines="1"
-        android:text="Pragya Saxena"
+        android:layout_marginStart="@dimen/secondary_row_margin"
+        android:layout_marginTop="@dimen/primary_avatar_text_padding"
+        android:text="Pragya"
         android:textAlignment="viewStart"
-        android:textAppearance="@android:style/TextAppearance.Material.Subhead"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/conversationAvatar" />
     <!-- TODO only first name in comma separated list for Groups -->
 
     <TextView
-        android:id="@+id/firstUnreadDate"
-        android:layout_width="wrap_content"
+        android:id="@+id/firstUnreadCommentDate"
+        style="@style/FSTE.Caption.Secondary"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_16"
-        android:lines="1"
-        android:text="Feb 12"
-        android:textAlignment="viewEnd"
-        android:textAppearance="@android:style/TextAppearance.Material.Caption"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@+id/participantNames"/>
+        android:layout_marginStart="@dimen/secondary_row_margin"
+        android:layout_marginTop="@dimen/secondary_avatar_text_padding"
+        android:text="Mar 25"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupName" />
     <!-- TODO change date format: see github web code -->
 
     <TextView
-        android:id="@+id/currentTopic"
-        android:layout_width="323dp"
+        android:id="@+id/topic"
+        style="@style/FSTE.Title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:layout_marginTop="0dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="Current Conversation Topic"
-        android:textAlignment="viewStart"
-        android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/firstUnreadCommentContent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline3"
-        app:layout_constraintRight_toLeftOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/participantNames"
-        app:layout_constraintVertical_bias="0.5" />
+        android:layout_marginEnd="@dimen/primary_row_margin"
+        android:layout_marginStart="@dimen/primary_row_margin"
+        android:layout_marginTop="@dimen/primary_text_padding"
+        android:text="Topic of conversations can be as long as they want to be?"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conversationAvatar" />
 
     <TextView
         android:id="@+id/firstUnreadCommentContent"
+        style="@style/FSTE.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/currentTopic"
-        android:layout_marginBottom="@dimen/_13"
+        android:layout_marginEnd="@dimen/primary_row_margin"
+        android:layout_marginStart="@dimen/primary_row_margin"
+        android:layout_marginTop="@dimen/secondary_text_padding"
         android:ellipsize="end"
-        android:lines="1"
+        android:maxLines="2"
         android:text="@string/large_text"
-        android:textAlignment="viewStart"
-        android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        android:textColor="@color/colorBody3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline3"
-        app:layout_constraintRight_toLeftOf="@+id/guideline2" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topic" />
     <!-- TODO remove line break tags from content -->
 
-    <android.support.constraint.Guideline
+    <TextView
+        android:id="@+id/textView"
+        style="@style/FSTE.Caption.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline2"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/_16"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="395dp" />
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline3"
-        app:layout_constraintGuide_begin="@dimen/_72"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="@dimen/_72" />
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="read &amp; respond"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstUnreadCommentContent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

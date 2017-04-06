@@ -1,45 +1,36 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
 
-    <dimen name="comment_row_margin">20dp</dimen>
-    <dimen name="comment_row_padding">10dp</dimen>
-    <dimen name="divider_comment_height">1dp</dimen>
-    <dimen name="divider_topic_height">5dp</dimen>
+    <!--<dimen name="app_bar_height">180dp</dimen>-->
+    <dimen name="primary_row_margin">20dp</dimen>
+    <dimen name="secondary_row_margin">80dp</dimen>
+    <dimen name="input_row_margin">17dp</dimen>
 
-    <dimen name="_0">0dp</dimen>
+    <dimen name="primary_text_padding">16dp</dimen>
+    <dimen name="secondary_text_padding">12dp</dimen>
+    <dimen name="input_text_padding">2dp</dimen>
+    <dimen name="input_text_base_padding">20dp</dimen>
+
+    <dimen name="primary_button_size">48dp</dimen>
+    <dimen name="primary_button_padding_top">3dp</dimen>
+    <dimen name="primary_button_padding_end">8dp</dimen>
+
+    <dimen name="avatar_size">40dp</dimen>
+    <dimen name="primary_avatar_text_padding">3dp</dimen>
+    <dimen name="secondary_avatar_text_padding">1dp</dimen>
+
+    <dimen name="primary_divider_height">5dp</dimen>
+    <dimen name="secondary_divider_height">1dp</dimen>
+
     <dimen name="_1">1dp</dimen>
-    <dimen name="_2">2dp</dimen>
     <dimen name="_4">4dp</dimen>
-    <dimen name="_6">6dp</dimen>
-    <dimen name="_8">8dp</dimen>
-    <dimen name="_12">12dp</dimen>
     <dimen name="_13">13dp</dimen>
     <dimen name="_16">16dp</dimen>
-    <dimen name="_20">20dp</dimen>
     <dimen name="_24">24dp</dimen>
     <dimen name="_32">32dp</dimen>
     <dimen name="_40">40dp</dimen>
-    <dimen name="_48">48dp</dimen>
-    <dimen name="_56">56dp</dimen>
-    <dimen name="_60">60dp</dimen>
-    <dimen name="_64">64dp</dimen>
     <dimen name="_72">72dp</dimen>
-    <dimen name="_88">88dp</dimen>
 
-    <!-- Font Sizes-->
-    <dimen name="textSizeHeadline">24sp</dimen>
-    <dimen name="textSizeTitle">20sp</dimen>
-    <dimen name="textSizeSubheading">16sp</dimen>
-    <dimen name="textSizeBody1">14sp</dimen>
-    <dimen name="textSizeBody2">14sp</dimen>
-    <dimen name="textSizeBody3">14sp</dimen>
-    <dimen name="textSizeCaption">12sp</dimen>
-    <dimen name="nav_header_vertical_spacing">16dp</dimen>
-    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="user_profile_text_size">14sp</dimen>
+    <dimen name="user_profile_avatar_size">64sp</dimen>
 
 </resources>
