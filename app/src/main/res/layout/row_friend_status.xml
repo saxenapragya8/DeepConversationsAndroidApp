@@ -1,125 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorWhite">
+    android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/imageView"
-        android:layout_width="@dimen/_40"
-        android:layout_height="@dimen/_40"
-        android:layout_marginStart="@dimen/_16"
-        android:layout_marginTop="@dimen/_16"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:tint="@color/colorPrimary"
-        app:srcCompat="@drawable/ic_circle" />
-    <!-- TODO: Button disabled for pending requests -->
-
-    <ImageButton
-        android:id="@+id/friendshipStatus"
-        android:layout_width="@dimen/_40"
-        android:layout_height="@dimen/_40"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="@dimen/_16"
-        android:background="@null"
-        android:tint="@color/colorWhite"
-        app:srcCompat="@drawable/ic_done"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintLeft_toLeftOf="parent" />
-    <!-- TODO: pending requests icon: ic_more_horiz -->
-
-    <ImageButton
-        android:layout_width="@dimen/_32"
-        android:layout_height="@dimen/_24"
-        android:layout_marginBottom="@dimen/_13"
-        android:layout_marginEnd="@dimen/_16"
-        android:background="@color/colorWhite"
-        android:tint="@color/colorBlack38"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_delete" />
-
-
-    <TextView
-        android:id="@+id/friendName"
-        android:layout_width="257dp"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_72"
-        android:layout_marginTop="@dimen/_13"
-        android:lines="1"
-        android:text="Varun Deshpande"
-        android:textAlignment="viewStart"
-        android:textAppearance="@android:style/TextAppearance.Material.Subhead"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <!-- TODO only first name in comma separated list -->
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/card_margin_vertical"
+        android:layout_marginEnd="@dimen/card_margin_horizontal"
+        android:layout_marginStart="@dimen/card_margin_horizontal"
+        android:layout_marginTop="@dimen/card_margin_vertical"
+        android:elevation="@dimen/card_elevation"
+        card_view:cardCornerRadius="@dimen/card_radius">
 
-    <TextView
-        android:id="@+id/friendshipRequestDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_16"
-        android:lines="1"
-        android:text="Feb 12"
-        android:textAlignment="viewEnd"
-        android:textAppearance="@android:style/TextAppearance.Material.Caption"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@+id/friendName" />
-    <!-- TODO change date format: see github web code -->
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/statusMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="0dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="@string/friendship_status_request_received"
-        android:textAlignment="viewStart"
-        android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/friendEmail"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/friendName"
-        app:layout_constraintVertical_bias="0.5" />
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/groupConversation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintRight_toRightOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/friendEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/statusMessage"
-        android:layout_marginBottom="@dimen/_13"
-        android:layout_marginEnd="@dimen/_40"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="varunsd@gmail.com"
-        android:textAlignment="viewStart"
-        android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        android:textColor="@color/colorBlack38"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline3" />
+                <ImageView
+                    android:id="@+id/friendAvatar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/primary_row_margin"
+                    android:layout_marginTop="@dimen/primary_row_margin"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@mipmap/ic_avatar" />
 
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline2"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/_16"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="395dp" />
+                <TextView
+                    android:id="@+id/friendName"
+                    style="@style/FSTE.Caption"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/secondary_row_margin"
+                    android:layout_marginTop="@dimen/primary_avatar_text_padding"
+                    android:text="Varun Deshpande"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/friendAvatar" />
+                <!-- TODO: sender or receiver -->
 
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline3"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/_72"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="@dimen/_72" />
+                <TextView
+                    android:id="@+id/friendEmail"
+                    style="@style/FSTE.Caption.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/secondary_row_margin"
+                    android:layout_marginTop="@dimen/secondary_avatar_text_padding"
+                    android:text="varunsd@gmail.com"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/friendName" />
 
-</android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/statusMessage"
+                    style="@style/FSTE.Subheading"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/primary_row_margin"
+                    android:layout_marginStart="@dimen/primary_row_margin"
+                    android:layout_marginTop="@dimen/primary_text_padding"
+                    android:text="@string/friendship_status_request_received"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/friendAvatar" />
+                <!--TODO display appropriate statusMessage -->
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/primary_text_padding"
+                android:background="@drawable/secondary_divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/groupConversation">
+
+                <!--TODO: display appropriate BUTTONS based on status-->
+                <Button
+                    android:id="@+id/acceptRequest"
+                    style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/card_primary_button_padding"
+                    android:text="@string/friend_request_accept"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <Button
+                    android:id="@+id/declineRequest"
+                    style="@android:style/Widget.Material.Light.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/card_secondary_button_padding"
+                    android:text="@string/friend_request_decline"
+                    android:textColor="@color/colorBlack38"
+                    app:layout_constraintRight_toLeftOf="@+id/acceptRequest"
+                    app:layout_constraintTop_toTopOf="@+id/acceptRequest" />
+
+                <!--<Button-->
+                <!--android:id="@+id/deleteRequest"-->
+                <!--style="@android:style/Widget.Material.Light.Button.Borderless"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginEnd="@dimen/card_primary_button_padding"-->
+                <!--android:text="@string/friend_request_delete"-->
+                <!--android:textColor="@color/colorBlack38"-->
+                <!--app:layout_constraintRight_toRightOf="parent" />-->
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

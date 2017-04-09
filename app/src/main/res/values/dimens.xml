@@ -4,6 +4,7 @@
     <dimen name="primary_row_margin">20dp</dimen>
     <dimen name="secondary_row_margin">80dp</dimen>
     <dimen name="input_row_margin">17dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="primary_text_padding">16dp</dimen>
     <dimen name="secondary_text_padding">12dp</dimen>
@@ -18,17 +19,15 @@
     <dimen name="primary_avatar_text_padding">3dp</dimen>
     <dimen name="secondary_avatar_text_padding">1dp</dimen>
 
+    <dimen name="card_margin_horizontal">8dp</dimen>
+    <dimen name="card_margin_vertical">4dp</dimen>
+    <dimen name="card_radius">2dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_primary_button_padding">16dp</dimen>
+    <dimen name="card_secondary_button_padding">8dp</dimen>
+
     <dimen name="primary_divider_height">5dp</dimen>
     <dimen name="secondary_divider_height">1dp</dimen>
-
-    <dimen name="_1">1dp</dimen>
-    <dimen name="_4">4dp</dimen>
-    <dimen name="_13">13dp</dimen>
-    <dimen name="_16">16dp</dimen>
-    <dimen name="_24">24dp</dimen>
-    <dimen name="_32">32dp</dimen>
-    <dimen name="_40">40dp</dimen>
-    <dimen name="_72">72dp</dimen>
 
     <dimen name="user_profile_text_size">14sp</dimen>
     <dimen name="user_profile_avatar_size">64sp</dimen>

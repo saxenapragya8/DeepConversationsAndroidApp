@@ -1,112 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/primary_divider">
+    android:orientation="vertical">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/primary_divider_height"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="5dp" />
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/card_margin_vertical"
+        android:layout_marginEnd="@dimen/card_margin_horizontal"
+        android:layout_marginStart="@dimen/card_margin_horizontal"
+        android:layout_marginTop="@dimen/card_margin_vertical"
+        android:elevation="@dimen/card_elevation"
+        card_view:cardCornerRadius="@dimen/card_radius">
 
-    <ImageView
-        android:id="@+id/conversationAvatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="@dimen/primary_row_margin"
-        android:layout_marginTop="@dimen/primary_row_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:srcCompat="@mipmap/ic_circle_read" />
-    <!-- TODO: image for no unread items (friends) is: ic_circle_unread -->
-    <!-- TODO: image for no unread items (groups) is: ic_circle_group -->
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/unreadCommentsCount"
-        style="@style/FSTE.AvatarText"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="@dimen/primary_row_margin"
-        android:layout_marginTop="9dp"
-        android:text="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/conversationAvatar" />
-    <!-- TODO: style for no unread items (friends) is: @style/FSTE.AvatarText.Secondary -->
-    <!-- TODO: text for no unread items is: first initial of friend -->
-    <!-- TODO: textView is hidden for Groups -->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/friendDetails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintRight_toRightOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/groupName"
-        style="@style/FSTE.Caption"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/secondary_row_margin"
-        android:layout_marginTop="@dimen/primary_avatar_text_padding"
-        android:text="Pragya"
-        android:textAlignment="viewStart"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/conversationAvatar" />
-    <!-- TODO only first name in comma separated list for Groups -->
+                <ImageView
+                    android:id="@+id/conversationAvatar"
+                    android:layout_width="@dimen/avatar_size"
+                    android:layout_height="@dimen/avatar_size"
+                    android:layout_marginStart="@dimen/primary_row_margin"
+                    android:layout_marginTop="@dimen/primary_row_margin"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@mipmap/ic_circle_read" />
+                <!-- TODO: image for no unread items (friends) is: ic_circle_unread -->
+                <!-- TODO: image for no unread items (groups) is: ic_circle_group -->
 
-    <TextView
-        android:id="@+id/firstUnreadCommentDate"
-        style="@style/FSTE.Caption.Secondary"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/secondary_row_margin"
-        android:layout_marginTop="@dimen/secondary_avatar_text_padding"
-        android:text="Mar 25"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupName" />
-    <!-- TODO change date format: see github web code -->
+                <TextView
+                    android:id="@+id/unreadCommentsCount"
+                    style="@style/FSTE.AvatarText"
+                    android:layout_width="@dimen/avatar_size"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="@dimen/primary_row_margin"
+                    android:layout_marginTop="9dp"
+                    android:text="1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/conversationAvatar" />
+                <!-- TODO: style for no unread items (friends) is: @style/FSTE.AvatarText.Secondary -->
+                <!-- TODO: text for no unread items is: first initial of friend -->
+                <!-- TODO: textView is hidden for Groups -->
 
-    <TextView
-        android:id="@+id/topic"
-        style="@style/FSTE.Title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/primary_row_margin"
-        android:layout_marginStart="@dimen/primary_row_margin"
-        android:layout_marginTop="@dimen/primary_text_padding"
-        android:text="Topic of conversations can be as long as they want to be?"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/conversationAvatar" />
+                <TextView
+                    android:id="@+id/groupName"
+                    style="@style/FSTE.Caption"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/secondary_row_margin"
+                    android:layout_marginTop="@dimen/primary_avatar_text_padding"
+                    android:text="Pragya"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/conversationAvatar" />
+                <!-- TODO only first name in comma separated list for Groups -->
 
-    <TextView
-        android:id="@+id/firstUnreadCommentContent"
-        style="@style/FSTE.Body1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/primary_row_margin"
-        android:layout_marginStart="@dimen/primary_row_margin"
-        android:layout_marginTop="@dimen/secondary_text_padding"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="@string/large_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topic" />
-    <!-- TODO remove line break tags from content -->
+                <TextView
+                    android:id="@+id/firstUnreadCommentDate"
+                    style="@style/FSTE.Caption.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/secondary_row_margin"
+                    android:layout_marginTop="@dimen/secondary_avatar_text_padding"
+                    android:text="Mar 25"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/groupName" />
+                <!-- TODO change date format: see github web code -->
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/FSTE.Caption.Secondary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="read &amp; respond"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstUnreadCommentContent"
-        app:layout_constraintVertical_bias="0.0" />
+                <TextView
+                    android:id="@+id/topic"
+                    style="@style/FSTE.Subheading"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/primary_row_margin"
+                    android:layout_marginStart="@dimen/primary_row_margin"
+                    android:layout_marginTop="@dimen/primary_text_padding"
+                    android:text="Topic of conversations can be as long as they want to be?"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/conversationAvatar" />
 
-</android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/firstUnreadCommentContent"
+                    style="@style/FSTE.Body1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/primary_row_margin"
+                    android:layout_marginStart="@dimen/primary_row_margin"
+                    android:layout_marginTop="@dimen/secondary_text_padding"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@string/large_text"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/topic" />
+                <!-- TODO remove line break tags from content -->
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="@dimen/primary_text_padding"
+                android:background="@drawable/secondary_divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/friendDetails">
+
+                <!--TODO: if conversation is UNREAD show READMORE button ELSE show NEWTOPIC button-->
+                <Button
+                    android:id="@+id/readMoreButton"
+                    style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/card_primary_button_padding"
+                    android:text="@string/read_more"
+                    app:layout_constraintRight_toRightOf="parent" />
+                <!--<Button-->
+                <!--android:id="@+id/newTopicButton"-->
+                <!--style="@android:style/Widget.Material.Light.Button.Borderless.Colored"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginEnd="@dimen/card_primary_button_padding"-->
+                <!--android:text="@string/new_topic"-->
+                <!--app:layout_constraintRight_toRightOf="parent" />-->
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

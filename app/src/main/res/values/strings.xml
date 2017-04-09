@@ -9,9 +9,14 @@
 
     <!-- Static Texts -->
     <string name="hint_comment">What are your thoughts?</string>
-    <string name="friendship_status_request_received">want to converse with you</string>
-    <string name="friendship_status_request_sent">request sent, awaiting reply</string>
-    <string name="friendship_status_request_denied">declined your request</string>
+    <string name="read_more">Read &amp; Respond</string>
+    <string name="new_topic">Start a new topic</string>
+    <string name="friend_request_accept">Accept</string>
+    <string name="friend_request_decline">Decline</string>
+    <string name="friend_request_delete">Delete</string>
+    <string name="friendship_status_request_received">Wants to converse with you!</string>
+    <string name="friendship_status_request_sent">Request sent, awaiting reply.</string>
+    <string name="friendship_status_request_denied">Declined your request to converse.</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>

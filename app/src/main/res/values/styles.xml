@@ -1,22 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.CloseActionBar" parent="AppTheme.NoActionBar">
+    <style name="AppTheme.CloseActionBar">
         <item name="android:homeAsUpIndicator">@drawable/ic_close</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
@@ -26,6 +26,14 @@
         <item name="android:textSize">20sp</item>
         <item name="android:lineSpacingMultiplier">1.2</item>
         <!--<item name="android:fontFamily">@font/roboto_slab</item>-->
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorBlack87</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="FSTE.Subheading" parent="@android:style/TextAppearance.Material.Subhead">
+        <item name="android:textSize">17sp</item>
+        <item name="android:lineSpacingMultiplier">1.45</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/colorBlack87</item>
         <item name="android:letterSpacing">0.01</item>
@@ -75,6 +83,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:fontFamily">sans-serif-smallcaps</item>
         <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="FSTE.AvatarText.Secondary">
