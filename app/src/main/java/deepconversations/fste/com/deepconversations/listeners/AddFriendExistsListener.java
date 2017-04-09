@@ -20,6 +20,8 @@ import deepconversations.fste.com.deepconversations.R;
 import deepconversations.fste.com.deepconversations.firebase.AppConstants;
 import deepconversations.fste.com.deepconversations.firebase.RealtimeDbConstants;
 import deepconversations.fste.com.deepconversations.firebase.RealtimeDbWriter;
+import deepconversations.fste.com.deepconversations.firebase.model.FriendStatus;
+import deepconversations.fste.com.deepconversations.preferences.PreferenceManager;
 
 /**
  * Created by Pragya on 3/26/2017.
@@ -48,8 +50,22 @@ public class AddFriendExistsListener implements ValueEventListener {
 //                Toast.makeText(ctx, "The friend is already using the app " + RealtimeDbConstants.APP_ID, Toast.LENGTH_LONG).show();
                 String friendUserId = obj.getKey();
                 String friendUserName = (String)obj.child(RealtimeDbConstants.USER_NAME).getValue();
-                RealtimeDbWriter.getInstance(ctx, false).addUserToFriendNode(friendUserId, RealtimeDbConstants.ACCEPT_INVITE);
-                RealtimeDbWriter.getInstance(ctx, false).addFriend(friendUserId, friendUserName, RealtimeDbConstants.INVITED);
+                String friendEmail = (String)obj.child(RealtimeDbConstants.EMAIL).getValue();
+
+                FriendStatus friendStatus = new FriendStatus();
+                friendStatus.setUserId(friendUserId);
+                friendStatus.setName(friendUserName);
+                friendStatus.setEmail(friendEmail);
+                friendStatus.setStatus(RealtimeDbConstants.INVITED);
+
+                FriendStatus userStatus = new FriendStatus();
+                userStatus.setUserId(PreferenceManager.getInstance(ctx).getUserId());
+                userStatus.setName(PreferenceManager.getInstance(ctx).getUserDisplayName());
+                userStatus.setEmail(PreferenceManager.getInstance(ctx).getUserEmail());
+                userStatus.setStatus(RealtimeDbConstants.ACCEPT_INVITE);
+
+                RealtimeDbWriter.getInstance(ctx, false).addFriend(PreferenceManager.getInstance(ctx).getUserId(), friendStatus);
+                RealtimeDbWriter.getInstance(ctx, false).addFriend(friendUserId, userStatus);
             } else {
 //                String title = "The friend is on our platform but not using the app " + RealtimeDbConstants.APP_ID;
 //                Toast.makeText(ctx, title, Toast.LENGTH_LONG).show();

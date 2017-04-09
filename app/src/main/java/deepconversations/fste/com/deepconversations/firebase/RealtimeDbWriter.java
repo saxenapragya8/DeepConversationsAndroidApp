@@ -6,11 +6,13 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import deepconversations.fste.com.deepconversations.R;
+import deepconversations.fste.com.deepconversations.firebase.model.FriendStatus;
 import deepconversations.fste.com.deepconversations.firebase.model.UserData;
 import deepconversations.fste.com.deepconversations.preferences.PreferenceManager;
 
@@ -38,8 +40,8 @@ public class RealtimeDbWriter {
     }
 
     public void addDataChangeListeners(){
-//        DatabaseReference userConvNodeRef = database.child(RealtimeDbConstants.USER_NODE).child(getUserId()).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.CONVERSATIONS);
-//        userConvNodeRef.orderByKey().addChildEventListener(new UserConversationsDataChangeListener(ctx));
+//        DatabaseReference friendsNode = database.child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
+//        friendsNode.orderByKey()..addChildEventListener(new UserConversationsDataChangeListener(ctx));
 //
 //        DatabaseReference userFriendList = database.child(RealtimeDbConstants.USER_NODE).child(getUserId()).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
 //        userFriendList.addValueEventListener(new FriendNodeDataListener(ctx));
@@ -110,7 +112,18 @@ public class RealtimeDbWriter {
     public void addNewInviteIds(String[] ids){
         DatabaseReference newInvitesList = database.child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.INVITES);
         for(String id: ids) {
-            newInvitesList.child(id).child(PreferenceManager.getInstance(ctx).getUserId()).setValue(PreferenceManager.getInstance(ctx).getUserDisplayName());
+            DatabaseReference ref = newInvitesList.child(id);
+            FriendStatus status = new FriendStatus();
+            status.setEmail(PreferenceManager.getInstance(ctx).getUserEmail());
+            status.setName(PreferenceManager.getInstance(ctx).getUserDisplayName());
+            status.setUserId(PreferenceManager.getInstance(ctx).getUserId());
+
+            ref.updateChildren(status.toMapWithUserId());
         }
+    }
+
+    public void addFriend(String userToAddTo, FriendStatus friendStatus){
+        DatabaseReference ref = database.child(RealtimeDbConstants.USER_NODE).child(userToAddTo).child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS);
+        ref.child(friendStatus.getUserId()).updateChildren(friendStatus.toMap());
     }
 }

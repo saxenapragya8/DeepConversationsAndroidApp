@@ -23,7 +23,8 @@
     <!--IF list is empty show this image-->
     <!--<include layout="@layout/background_image" />-->
     <!--ELSE show list-->
-    <include layout="@layout/content_navigation" />
+    <include layout="@layout/content_navigation"
+        android:id="@+id/navigationContent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

@@ -12,6 +12,8 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -33,11 +35,16 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
+import deepconversations.fste.com.deepconversations.adapters.NavigationViewAdapter;
 import deepconversations.fste.com.deepconversations.firebase.AppConstants;
 import deepconversations.fste.com.deepconversations.firebase.RealtimeDbReader;
 import deepconversations.fste.com.deepconversations.firebase.RealtimeDbWriter;
+import deepconversations.fste.com.deepconversations.firebase.model.FriendStatus;
+import deepconversations.fste.com.deepconversations.firebase.model.GroupData;
 import deepconversations.fste.com.deepconversations.preferences.PreferenceManager;
 
 public class NavigationActivity extends AppCompatActivity
@@ -45,6 +52,21 @@ public class NavigationActivity extends AppCompatActivity
 
     private int REQUEST_CODE = 1;
     private GoogleApiClient mGoogleApiClientAppInviteOnly;
+    private static List<FriendStatus> newFriendStatuses = new ArrayList<>();;
+    private static List<GroupData> groupsData = new ArrayList<>();;
+    private static NavigationViewAdapter adapter;
+
+    public synchronized static void addFriend(FriendStatus friend){
+        newFriendStatuses.add(friend);
+        if(adapter != null)
+            adapter.notifyDataSetChanged();
+    }
+
+    public synchronized static void addGroup(GroupData group){
+        groupsData.add(group);
+        if(adapter != null)
+            adapter.notifyDataSetChanged();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +77,7 @@ public class NavigationActivity extends AppCompatActivity
 
         RealtimeDbWriter.getInstance(this, true);
         RealtimeDbReader.getInstance(this, true);
+        RealtimeDbReader.addDataReadListeners();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -72,6 +95,18 @@ public class NavigationActivity extends AppCompatActivity
         email.setText(PreferenceManager.getInstance(this).getUserEmail());
 
         getAppInvites();
+
+        //Setup the adapter
+        View layout = drawer.findViewById(R.id.appBarNav);
+        View navigationViewContent = layout.findViewById(R.id.navigationContent);
+        RecyclerView recView = (RecyclerView)navigationViewContent.findViewById(R.id.friendsGroupRecView);
+        adapter = new NavigationViewAdapter(newFriendStatuses, groupsData, this);
+
+        // use a linear layout manager
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recView.setLayoutManager(mLayoutManager);
+
+        recView.setAdapter(adapter);
 
 //        TextView topic = (TextView)findViewById(R.id.topic);
 //        TextView friend_request = (TextView)findViewById(R.id.statusMessage);
@@ -105,16 +140,8 @@ public class NavigationActivity extends AppCompatActivity
                                 Log.d("appInvites", "getInvitation:onResult:" + result.getStatus());
                                 Intent intent = result.getInvitationIntent();
                                 if (result.getStatus().isSuccess()) {
-                                    // Extract information from the intent
-//                                    Intent intent = result.getInvitationIntent();
-//                                    String deepLink = AppInviteReferral.getDeepLink(intent);
                                     String invitationId = AppInviteReferral.getInvitationId(intent);
                                     RealtimeDbReader.getInstance(NavigationActivity.this, false).getInviteIdInviteSentByUser(invitationId);
-                                    // Because autoLaunchDeepLink = true we don't have to do anything
-                                    // here, but we could set that to false and manually choose
-                                    // an Activity to launch to handle the deep link here.
-                                    // ...
-//                                    ctx.startActivity(intent);
                                 }
                             }
                         });

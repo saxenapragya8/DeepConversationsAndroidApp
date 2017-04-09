@@ -10,6 +10,7 @@ public class RealtimeDbConstants {
     public static final String APP_ID = "DeepConversations";
     public static final String EMAIL = "Email";
     public static final String USER_NAME = "UserName";
+    public static final String USER_ID = "UserId";
     public static final String CONVERSATIONS = "Conversations";
     public static final String FRIENDS = "Friends";
     public static final String COMMENTS = "Comments";
