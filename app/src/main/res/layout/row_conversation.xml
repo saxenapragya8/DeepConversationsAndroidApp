@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/card_margin_top"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -77,11 +79,12 @@
                     style="@style/FSTE.Caption.Secondary"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/primary_avatar_text_padding"
                     android:layout_marginStart="@dimen/secondary_row_margin"
-                    android:layout_marginTop="@dimen/secondary_avatar_text_padding"
                     android:text="Mar 25"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/groupName" />
+                    app:layout_constraintTop_toBottomOf="@+id/groupName"
+                    card_view:layout_constraintBottom_toBottomOf="@+id/conversationAvatar" />
                 <!-- TODO change date format: see github web code -->
 
                 <TextView
