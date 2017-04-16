@@ -1,6 +1,4 @@
 <resources>
-
-    <!--<dimen name="app_bar_height">180dp</dimen>-->
     <dimen name="primary_row_margin">20dp</dimen>
     <dimen name="secondary_row_margin">80dp</dimen>
     <dimen name="input_row_margin">17dp</dimen>
@@ -16,9 +14,11 @@
     <dimen name="primary_button_padding_end">8dp</dimen>
 
     <dimen name="avatar_size">40dp</dimen>
-    <dimen name="primary_avatar_text_padding">3dp</dimen>
-    <dimen name="secondary_avatar_text_padding">1dp</dimen>
+    <dimen name="primary_avatar_text_padding">2dp</dimen>
+    <dimen name="secondary_avatar_text_padding">0dp</dimen>
 
+    <dimen name="recycler_margin_top">0dp</dimen>
+    <dimen name="card_margin_top">4dp</dimen>
     <dimen name="card_margin_horizontal">8dp</dimen>
     <dimen name="card_margin_vertical">4dp</dimen>
     <dimen name="card_radius">2dp</dimen>
@@ -31,5 +31,4 @@
 
     <dimen name="user_profile_text_size">14sp</dimen>
     <dimen name="user_profile_avatar_size">64sp</dimen>
-
 </resources>

@@ -42,11 +42,11 @@
         style="@style/FSTE.Caption.Secondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/primary_avatar_text_padding"
         android:layout_marginStart="@dimen/secondary_row_margin"
-        android:layout_marginTop="@dimen/secondary_avatar_text_padding"
         android:text="Mar 25"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
+        app:layout_constraintBottom_toBottomOf="@+id/topicAvatar"
+        app:layout_constraintLeft_toLeftOf="parent" />
     <!-- TODO change date format: see github web code -->
 
     <ImageButton
