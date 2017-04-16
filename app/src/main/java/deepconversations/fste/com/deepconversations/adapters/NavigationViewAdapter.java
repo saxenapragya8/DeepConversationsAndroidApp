@@ -5,20 +5,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
 
 import deepconversations.fste.com.deepconversations.R;
+import deepconversations.fste.com.deepconversations.firebase.RealtimeDbConstants;
 import deepconversations.fste.com.deepconversations.firebase.model.FriendStatus;
 import deepconversations.fste.com.deepconversations.firebase.model.GroupData;
-import deepconversations.fste.com.deepconversations.firebase.model.NewFriendData;
+import deepconversations.fste.com.deepconversations.uieventhandlers.AcceptFriendRequestListener;
+import deepconversations.fste.com.deepconversations.uieventhandlers.DeclineFriendRequestListener;
+import deepconversations.fste.com.deepconversations.uieventhandlers.DeleteFriendRequestListener;
 
 /**
  * Created by Pragya on 4/3/2017.
  */
 
-public class NavigationViewAdapter extends RecyclerView.Adapter<NavigationViewAdapter.ViewHolder> {
+public class NavigationViewAdapter extends RecyclerView.Adapter<NavigationViewAdapter.ViewHolder>{
 
     List<FriendStatus> newFriends;
     List<GroupData> groupData;
@@ -37,17 +41,23 @@ public class NavigationViewAdapter extends RecyclerView.Adapter<NavigationViewAd
         }
     }
 
-    public static class NewFriendViewHolder extends ViewHolder{
+    public static class NewFriendViewHolder extends ViewHolder {
         TextView friendName;
         TextView friendEmail;
         TextView statusMessage;
         TextView friendshipRequestDate;
+        Button accept;
+        Button decline;
+        Button deleteRequest;
 
         public NewFriendViewHolder(View itemView) {
             super(itemView);
             friendName = (TextView)itemView.findViewById(R.id.friendName);
             friendEmail = (TextView)itemView.findViewById(R.id.friendEmail);
             statusMessage = (TextView)itemView.findViewById(R.id.statusMessage);
+            accept = (Button)itemView.findViewById(R.id.acceptRequest);
+            decline = (Button)itemView.findViewById(R.id.declineRequest);
+            deleteRequest = (Button)itemView.findViewById(R.id.deleteRequest);
 //            friendshipRequestDate = (TextView)itemView.findViewById(R.id.friendshipRequestDate);
         }
     }
@@ -93,9 +103,24 @@ public class NavigationViewAdapter extends RecyclerView.Adapter<NavigationViewAd
             ((GroupViewHolder) holder).unreadCommentsCount.setText(groupData.get(position).getUnreadCommentCount());
         } else if(holder instanceof NewFriendViewHolder){
             int tempPosition = position - groupData.size();
+            String status = newFriends.get(tempPosition).getStatus();
             ((NewFriendViewHolder) holder).friendEmail.setText(newFriends.get(tempPosition).getEmail());
             ((NewFriendViewHolder) holder).friendName.setText(newFriends.get(tempPosition).getName());
-            ((NewFriendViewHolder) holder).statusMessage.setText(newFriends.get(tempPosition).getStatus());
+            ((NewFriendViewHolder) holder).statusMessage.setText(status);
+
+            if(status.equals(RealtimeDbConstants.INVITED)){
+                ((NewFriendViewHolder) holder).deleteRequest.setVisibility(View.VISIBLE);
+                ((NewFriendViewHolder) holder).accept.setVisibility(View.GONE);
+                ((NewFriendViewHolder) holder).decline.setVisibility(View.GONE);
+            } else if(status.equals(RealtimeDbConstants.ACCEPT_INVITE)){
+                ((NewFriendViewHolder) holder).deleteRequest.setVisibility(View.GONE);
+                ((NewFriendViewHolder) holder).accept.setVisibility(View.VISIBLE);
+                ((NewFriendViewHolder) holder).decline.setVisibility(View.VISIBLE);
+            }
+            ((NewFriendViewHolder) holder).accept.setOnClickListener(new AcceptFriendRequestListener(ctx, newFriends.get(tempPosition)));
+            ((NewFriendViewHolder) holder).decline.setOnClickListener(new DeclineFriendRequestListener(ctx, newFriends.get(tempPosition)));
+            ((NewFriendViewHolder) holder).deleteRequest.setOnClickListener(new DeleteFriendRequestListener(ctx, newFriends.get(tempPosition)));
+//            view.findViewById()
 //            ((NewFriendViewHolder) holder).friendshipRequestDate.setText(newFriends.get(tempPosition).getCreationDate().toString());
         }
     }

@@ -56,14 +56,41 @@ public class NavigationActivity extends AppCompatActivity
     private static List<GroupData> groupsData = new ArrayList<>();;
     private static NavigationViewAdapter adapter;
 
-    public synchronized static void addFriend(FriendStatus friend){
-        newFriendStatuses.add(friend);
+    public synchronized static void removeFriend(FriendStatus friend){
+        newFriendStatuses.remove(friend);
         if(adapter != null)
             adapter.notifyDataSetChanged();
     }
 
+    public synchronized static void friendChangeOrAdd(FriendStatus friend){
+        FriendStatus friendInList = exists(friend);
+        if(friendInList != null){
+            friendInList.setCreatedAt(friend.getCreatedAt());
+            friendInList.setStatus(friend.getStatus());
+        } else {
+            newFriendStatuses.add(friend);
+        }
+        if(adapter != null)
+            adapter.notifyDataSetChanged();
+    }
+
+    private static FriendStatus exists(FriendStatus friend){
+        for(FriendStatus friendStatus: newFriendStatuses){
+            if(friendStatus.equals(friend)){
+                return friendStatus;
+            }
+        }
+        return null;
+    }
+
     public synchronized static void addGroup(GroupData group){
         groupsData.add(group);
+        if(adapter != null)
+            adapter.notifyDataSetChanged();
+    }
+
+    public synchronized static void removeGroup(GroupData group){
+        groupsData.remove(group);
         if(adapter != null)
             adapter.notifyDataSetChanged();
     }

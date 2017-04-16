@@ -5,9 +5,8 @@ import android.content.Context;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import deepconversations.fste.com.deepconversations.NavigationActivity;
 import deepconversations.fste.com.deepconversations.listeners.AddFriendExistsListener;
-import deepconversations.fste.com.deepconversations.listeners.FriendsListener;
+import deepconversations.fste.com.deepconversations.listeners.FriendsNodeChangedListener;
 import deepconversations.fste.com.deepconversations.listeners.InvitedByUserListener;
 import deepconversations.fste.com.deepconversations.preferences.PreferenceManager;
 
@@ -23,11 +22,15 @@ public class RealtimeDbReader {
 
     public static void addDataReadListeners(){
         //pick up accept/decline friends 1st
+//        database.child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId())
+//                .child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS)
+//                .orderByChild(RealtimeDbConstants.FRIEND_STATUS).equalTo(RealtimeDbConstants.ACCEPT_INVITE)
+//                .addListenerForSingleValueEvent(new FriendsAppLaunchListener());
+
+        //for friends node change, get realtime updates on the node
         database.child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId())
                 .child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS)
-                .orderByChild(RealtimeDbConstants.FRIEND_STATUS).equalTo(RealtimeDbConstants.ACCEPT_INVITE)
-                .addListenerForSingleValueEvent(new FriendsListener());
-
+                .addChildEventListener(new FriendsNodeChangedListener());
         //Pick up awaiting response next
 //        database.child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId())
 //                .child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.FRIENDS)

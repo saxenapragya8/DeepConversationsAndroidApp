@@ -14,6 +14,7 @@ public class GroupData {
     Date firstUnreadDate;
     int unreadCommentCount;
 
+
     public int getUnreadCommentCount() {
         return unreadCommentCount;
     }

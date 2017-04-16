@@ -84,6 +84,27 @@ public class FriendStatus {
         return result;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FriendStatus that = (FriendStatus) o;
+
+        if (!userId.equals(that.userId)) return false;
+        if (!name.equals(that.name)) return false;
+        return email.equals(that.email);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = userId.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + email.hashCode();
+        return result;
+    }
+
     @Exclude
     public Map<String, Object> toMapWithUserId() {
         Map<String, Object> result = toMap();

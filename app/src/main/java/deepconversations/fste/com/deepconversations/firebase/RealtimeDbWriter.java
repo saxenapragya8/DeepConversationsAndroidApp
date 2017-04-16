@@ -109,6 +109,37 @@ public class RealtimeDbWriter {
         friendsFriendList.child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.FRIEND_NAME).setValue(PreferenceManager.getInstance(ctx).getUserDisplayName());
     }
 
+    public void acceptFriend(FriendStatus friendData){
+        DatabaseReference friendNode = database.child(RealtimeDbConstants.USER_NODE).child(friendData.getUserId()).child(RealtimeDbConstants.APP_ID);
+        friendNode.child(RealtimeDbConstants.FRIENDS).child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.ACCEPT);
+        DatabaseReference userNode = database.child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.APP_ID);
+        userNode.child(RealtimeDbConstants.FRIENDS).child(friendData.getUserId()).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.ACCEPT);
+
+        DatabaseReference groupNode = database.child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.GROUPS);
+        String groupId = groupNode.push().getKey();
+        groupNode.child(groupId).child(RealtimeDbConstants.GROUP_NAME).setValue("dummyName");
+        groupNode.child(groupId).child(RealtimeDbConstants.USER_NODE).child(friendData.getUserId()).setValue(RealtimeDbConstants.ACCEPT);
+        groupNode.child(groupId).child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId()).setValue(RealtimeDbConstants.ACCEPT);
+        friendNode.child(RealtimeDbConstants.GROUPS).child(groupId).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.ACCEPT);
+        friendNode.child(RealtimeDbConstants.GROUPS).child(groupId).child(RealtimeDbConstants.CREATED_AT).setValue(ServerValue.TIMESTAMP);
+        userNode.child(RealtimeDbConstants.GROUPS).child(groupId).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.ACCEPT);
+        userNode.child(RealtimeDbConstants.GROUPS).child(groupId).child(RealtimeDbConstants.CREATED_AT).setValue(ServerValue.TIMESTAMP);
+    }
+
+    public void declineFriendStatus(FriendStatus friendData){
+        DatabaseReference friendNode = database.child(RealtimeDbConstants.USER_NODE).child(friendData.getUserId()).child(RealtimeDbConstants.APP_ID);
+        friendNode.child(RealtimeDbConstants.FRIENDS).child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.DECLINE);
+        DatabaseReference userNode = database.child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.APP_ID);
+        userNode.child(RealtimeDbConstants.FRIENDS).child(friendData.getUserId()).child(RealtimeDbConstants.FRIEND_STATUS).setValue(RealtimeDbConstants.DECLINED);
+    }
+
+    public void deleteFriendRequest(FriendStatus friendData){
+        DatabaseReference friendNode = database.child(RealtimeDbConstants.USER_NODE).child(friendData.getUserId()).child(RealtimeDbConstants.APP_ID);
+        friendNode.child(RealtimeDbConstants.FRIENDS).child(PreferenceManager.getInstance(ctx).getUserId()).removeValue();
+        DatabaseReference userNode = database.child(RealtimeDbConstants.USER_NODE).child(PreferenceManager.getInstance(ctx).getUserId()).child(RealtimeDbConstants.APP_ID);
+        userNode.child(RealtimeDbConstants.FRIENDS).child(friendData.getUserId()).removeValue();
+    }
+
     public void addNewInviteIds(String[] ids){
         DatabaseReference newInvitesList = database.child(RealtimeDbConstants.APP_ID).child(RealtimeDbConstants.INVITES);
         for(String id: ids) {

@@ -18,12 +18,14 @@ public class RealtimeDbConstants {
     public static final String CONTENT = "Content";
     public static final String INSPIRATION = "Inspiration";
     public static final String CREATED_AT = "CreatedAt";
-    public static final String CREATED_BY = "CreatedByDisplayName";
-    public static final String CREATED_BY_ID = "CreatedByID";
+    public static final String ACCEPT = "Accept";
+    public static final String DECLINED = "Declined";
+    public static final String DECLINE = "Declined your request to converse.";
     public static final String FRIEND_STATUS = "Status";
-    public static final String INVITED = "Awaiting Response";
-    public static final String ACCEPT_INVITE = "Accept/Decline";
-    public static final String ACTIVE = "Active";
+    public static final String INVITED = "Request sent, awaiting reply.";
+    public static final String ACCEPT_INVITE = "Wants to converse with you!";
     public static final String FRIEND_NAME = "Name";
     public static final String INVITES = "NewInvites";
+    public static final String GROUPS = "Groups";
+    public static final String GROUP_NAME = "GroupName";
 }

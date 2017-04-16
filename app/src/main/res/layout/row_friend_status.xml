@@ -113,15 +113,15 @@
                     app:layout_constraintRight_toLeftOf="@+id/acceptRequest"
                     app:layout_constraintTop_toTopOf="@+id/acceptRequest" />
 
-                <!--<Button-->
-                <!--android:id="@+id/deleteRequest"-->
-                <!--style="@android:style/Widget.Material.Light.Button.Borderless"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginEnd="@dimen/card_primary_button_padding"-->
-                <!--android:text="@string/friend_request_delete"-->
-                <!--android:textColor="@color/colorBlack38"-->
-                <!--app:layout_constraintRight_toRightOf="parent" />-->
+                <Button
+                android:id="@+id/deleteRequest"
+                style="@android:style/Widget.Material.Light.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/card_primary_button_padding"
+                android:text="@string/friend_request_delete"
+                android:textColor="@color/colorBlack38"
+                app:layout_constraintRight_toRightOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
 
